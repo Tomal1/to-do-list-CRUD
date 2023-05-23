@@ -10,8 +10,6 @@ addToDo.addEventListener("click", ()=>{
     toDoContainer.appendChild(paragraph);
     inputField.value = "";
 
-
-    ////
     paragraph.addEventListener("click", ()=>{
         paragraph.style.textDecoration = "line-through";
     })

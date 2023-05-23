@@ -6,6 +6,18 @@ html, body {
 
 }
 
+#addToDo{
+    border-radius: 15px;
+    background: none;
+}
+
+#addToDo:hover{
+    cursor: pointer;
+    background: black;
+    color: white;
+    transition: 0.5s;
+}
+
 .container{
     width: 360px;
 }
@@ -14,9 +26,11 @@ html, body {
     width: 300px;
     height: 46px;
     border: 1px solid black;
+    border-radius: 15px;
     outline:none;
     font-size: 25px;
     vertical-align: middle;
+    text-align: center;
 }
 
 #addToDo{
@@ -26,7 +40,6 @@ html, body {
     vertical-align: middle;
     font-size: 30px;
 }
-
 
 .paragraph-styling{
         margin: 20;
