@@ -44,7 +44,20 @@ app.post("/",(req,res)=>{
 })
 
 
+app.delete("/", (req, res)=>{
+    const values = [req.body.id]
 
+    const sql =  `DELETE FROM input WHERE id = ?`; // Always use backticks when not hard coding
+    
+    db.query(sql,values,(err,data) => {
+        if(err){
+            throw err;
+        } else{
+            console.log(data)
+            return res.json("deleted user successfully");
+        }
+    })
+});
 
 app.use(express.static('public'));
 
