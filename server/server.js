@@ -1,5 +1,7 @@
-
+//npm i express
 const express = require("express");
+
+//npm i dotenv
 require("dotenv").config();
 
 const app = express();
@@ -13,8 +15,39 @@ app.use(express.json());
 
 const db = require("./config/connection");
 
+
+app.get("/",(req,res)=>{
+
+    const sql = "SELECT * FROM input";
+
+    db.query(sql, (err, data) =>{
+        if(err){
+            throw err;
+        }else{
+            return res.json(data);   
+        }
+    })
+})
+
+app.post("/",(req,res)=>{
+
+    const sql = "INSERT INTO input (toDos) VALUE (?)";
+    const values = [req.body.toDos];
+
+    db.query(sql, values, (err, data) =>{
+        if(err){
+            throw err;
+        }else{
+            return res.json(data);   
+        }
+    })
+})
+
+
+
+
 app.use(express.static('public'));
 
-app.listen(process.env.PORT || PORT, ()=>{
+app.listen(process.env.PORT || PORT, () => {
     console.log(`listening to port ${PORT}`)
 })

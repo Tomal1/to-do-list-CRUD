@@ -1,3 +1,4 @@
+// npm i mysql2
 const mysql = require("mysql2");
 
 require("dotenv").config();
@@ -9,7 +10,7 @@ const db = mysql.createConnection(
   password: process.env.DB_PASSWORD, 
   host: process.env.DB_HOST,
   },
-    console.log("Connected to the mysql database")
+    console.log("Connected to mariaDB database")
   );
 
   module.exports = db;
