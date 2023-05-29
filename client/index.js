@@ -39,13 +39,17 @@ const start = () => {
 start();
 
 addToDo.addEventListener("click", () => {
-  console.log(inputField.value); //displays what you are typing in to the input field
+  if (inputField.value === "") {
+    alert("Input field cant be left empty");
+  } else {
+    console.log(inputField.value); //displays what you are typing in to the input field
 
-  fetch("http://localhost:3001/post", {
-    method: "POST",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify({ toDos: inputField.value }),
-  })
-    .then((res) => res.json())
-    .then(console.log("posted successfully"));
+    fetch("http://localhost:3001/post", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ toDos: inputField.value }),
+    })
+      .then((res) => res.json())
+      .then(console.log("posted successfully"));
+  }
 });
