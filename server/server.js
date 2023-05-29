@@ -47,6 +47,26 @@ app.post("/post", (req, res) => {
   });
 });
 
+app.put("/update", (req,res)=>{
+
+    const sql = "UPDATE input SET toDos = ? WHERE id = ?";
+
+    const values = [ //must be in same order as sql (so to/Dos firs and then id)
+        req.body.toDos,
+        req.body.id
+    ];
+
+    db.query(sql, values, (err,data)=>{
+        if (err) {
+            throw err;
+          } else {
+            return res.json(data);
+          }
+    })
+
+})
+
+
 app.delete("/delete", (req, res) => {
   const values = [req.body.id];
 
