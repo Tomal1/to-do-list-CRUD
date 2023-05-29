@@ -14,10 +14,27 @@ const start = () => {
             paragraph.innerText =  data[i].toDos;
             paragraph.classList.add("paragraph-styling");
             toDoContainer.appendChild(paragraph);
-        }
 
+            paragraph.addEventListener("dblclick", () =>{
+                let idFinder = "";
+                if(paragraph.innerText === data[i].toDos){
+                    idFinder = idFinder + data[i].id;
+                }
+
+                console.log(idFinder);
+
+                    fetch("http://localhost:3001/delete", {
+                        method: "DELETE",
+                        headers: {"Content-type": "application/json"},
+                        body: JSON.stringify({
+                            id: idFinder
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => console.log(data))
+            })
+        }
         inputField.value = "";
-    
     })
 } 
 start()
@@ -32,34 +49,7 @@ fetch("http://localhost:3001/post",{
     body: JSON.stringify({toDos: inputField.value})
 })
 .then(res => res.json())
-.then(data => console.log(data))
-
-    //created in DOM
-    const paragraph = document.createElement("p");
-    paragraph.innerText =  inputField.value;
-    paragraph.classList.add("paragraph-styling");
-    toDoContainer.appendChild(paragraph);
-    inputField.value = "";
-
-    paragraph.addEventListener("click", ()=> {
-        paragraph.innerText
-    });
-
-    paragraph.addEventListener("dblclick", ()=>{
-
-        fetch("http://localhost:3001/delete", {
-            method: "DELETE",
-            headers: {"Content-type": "application/json"},
-            // body: JSON.stringify({
-            //     id:
-            // })// how to excess id of element stored in mysql when I click on the element
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-
-        //removed from DOM
-        toDoContainer.removeChild(paragraph);
-    })
+.then(console.log("posted successfully"))
 })
 
 
