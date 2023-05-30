@@ -7,7 +7,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 const app = express();
-const PORT = 3001 || process.env.PORT;
+const PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
@@ -51,7 +51,7 @@ app.put("/update", (req, res) => {
   const sql = "UPDATE input SET toDos = ? WHERE id = ?";
 
   const values = [
-    //must be in same order as sql (so to/Dos firs and then id)
+    //must be in same order as sql (so toDos first and then id)
     req.body.toDos,
     req.body.id,
   ];
@@ -82,6 +82,6 @@ app.delete("/delete", (req, res) => {
 
 app.use(express.static("public"));
 
-app.listen(/*process.env.PORT ||*/ PORT, () => {
+app.listen(PORT, () => {
   console.log(`listening to port ${PORT}`);
 });
