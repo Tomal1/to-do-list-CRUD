@@ -2,6 +2,8 @@ const addToDo = document.querySelector("#addToDo");
 const toDoContainer = document.querySelector("#toDoContainer");
 const inputField = document.querySelector("#inputField");
 
+const refreshPage = () => window.location.reload();
+
 const start = () => {
   fetch("http://localhost:3001")
     .then((res) => res.json())
@@ -14,14 +16,38 @@ const start = () => {
         paragraph.classList.add("paragraph-styling");
         toDoContainer.appendChild(paragraph);
 
-        paragraph.addEventListener("click", (e)=>{
-
+        paragraph.addEventListener("click", (e) => {
           let idFinder = "";
           if (paragraph.innerText === data[i].toDos) {
             idFinder = idFinder + data[i].id;
           }
 
-          if (e.detail === 2){
+          if (e.detail === 2) {
+            const editInput = document.createElement("input");
+            paragraph.appendChild(editInput);
+
+            const Edit = document.createElement("input");
+            Edit.type = "submit";
+            Edit.value = "Edit";
+            paragraph.appendChild(Edit);
+
+            Edit.addEventListener("click", () => {
+              fetch("http://localhost:3001/update", {
+                method: "PUT",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify({
+                  toDos: editInput.value,
+                  id: idFinder,
+                }),
+              })
+                .then((res) => res.json())
+                .then(console.log("edited successfully"));
+
+              refreshPage();
+            });
+          }
+
+          if (e.detail === 3) {
             fetch("http://localhost:3001/delete", {
               method: "DELETE",
               headers: { "Content-type": "application/json" },
@@ -31,14 +57,13 @@ const start = () => {
             })
               .then((res) => res.json())
               .then((data) => console.log(data));
+
+            refreshPage();
           }
-        })
+        });
       }
       inputField.value = "";
     });
-
-
-
 };
 start();
 
@@ -56,4 +81,6 @@ addToDo.addEventListener("click", () => {
       .then((res) => res.json())
       .then(console.log("posted successfully"));
   }
+
+  refreshPage();
 });
