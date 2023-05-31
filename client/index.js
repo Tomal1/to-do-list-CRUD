@@ -14,27 +14,31 @@ const start = () => {
         paragraph.classList.add("paragraph-styling");
         toDoContainer.appendChild(paragraph);
 
-        paragraph.addEventListener("dblclick", () => {
+        paragraph.addEventListener("click", (e)=>{
+
           let idFinder = "";
           if (paragraph.innerText === data[i].toDos) {
             idFinder = idFinder + data[i].id;
           }
 
-          console.log(idFinder);
-
-          fetch("http://localhost:3001/delete", {
-            method: "DELETE",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify({
-              id: idFinder,
-            }),
-          })
-            .then((res) => res.json())
-            .then((data) => console.log(data));
-        });
+          if (e.detail === 2){
+            fetch("http://localhost:3001/delete", {
+              method: "DELETE",
+              headers: { "Content-type": "application/json" },
+              body: JSON.stringify({
+                id: idFinder,
+              }),
+            })
+              .then((res) => res.json())
+              .then((data) => console.log(data));
+          }
+        })
       }
       inputField.value = "";
     });
+
+
+
 };
 start();
 
