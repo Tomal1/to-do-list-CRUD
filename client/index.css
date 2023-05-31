@@ -70,3 +70,13 @@ h1 {
 .paragraph-styling:hover {
   scale: 1.05;
 }
+
+.editInput-styling{
+  text-align: center;
+  background-color: black;
+  color: white;
+  border: var(--border);
+  border-radius: 15px;
+  height: 40px;
+  font-size: 20px;
+}
