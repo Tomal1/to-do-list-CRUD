@@ -23,12 +23,16 @@ const start = () => {
           }
 
           if (e.detail === 2) {
+            paragraph.innerHTML = "";
             const editInput = document.createElement("input");
+            editInput.value = data[i].toDos;
+            editInput.classList.add("editInput-styling");
             paragraph.appendChild(editInput);
 
             const Edit = document.createElement("input");
             Edit.type = "submit";
             Edit.value = "Edit";
+            Edit.classList.add("Edit-styling");
             paragraph.appendChild(Edit);
 
             Edit.addEventListener("click", () => {
