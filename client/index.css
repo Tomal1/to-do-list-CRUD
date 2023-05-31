@@ -1,13 +1,27 @@
+:root{
+  --color-of-everything:#FF5F1F;
+
+  --border: 3px solid #FF5F1F;
+}
+
+
 html,
 body {
   width: 50%;
   margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif;
+  background: rgb(82, 10, 113);
+}
+
+h1{
+  text-align: center;
+  color: var(--color-of-everything);
 }
 
 #addToDo {
   border-radius: 15px;
   background: none;
+  color:var(--color-of-everything);
 }
 
 #addToDo:hover {
@@ -24,18 +38,20 @@ body {
 #inputField {
   width: 300px;
   height: 45px;
-  border: 1px solid black;
+  border: 1px solid #FF5F1F;
   border-radius: 15px;
   outline: none;
   font-size: 25px;
   vertical-align: middle;
   text-align: center;
+  background-color: black;
+  color: white;
 }
 
 #addToDo {
   height: 50px;
   width: 50px;
-  border: 1px solid black;
+  border: var(--border);
   vertical-align: middle;
   font-size: 30px;
 }
@@ -44,10 +60,16 @@ body {
   margin: 20;
   cursor: pointer;
   font-size: 20px;
-  border: 1px solid black;
+  border: var(--border);
   border-radius: 15px;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color:var(--color-of-everything);
+}
+
+.paragraph-styling:hover {
+  scale:1.05
+
 }
