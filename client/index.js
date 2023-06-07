@@ -5,6 +5,7 @@ const inputField = document.querySelector("#inputField");
 const refreshPage = () => window.location.reload();
 
 const start = () => {
+  
   fetch("http://localhost:3001")
     .then((res) => res.json())
     .then((data) => {
